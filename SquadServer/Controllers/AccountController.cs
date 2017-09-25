@@ -114,6 +114,18 @@ namespace SquadServer.Controllers
             };
         }
 
+        [Authorize] [HttpPost]
+        [Route("ChangeName")]
+        public async Task<IHttpActionResult> ChangeName(ChangeNameModel name)
+        {
+            ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            user.FirstName = name.Name;
+            IdentityResult result = await UserManager.UpdateAsync(user);
+            if(result.Succeeded)
+                return Ok();
+            return GetErrorResult(result);
+        }
+
         // POST api/Account/ChangePassword
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)

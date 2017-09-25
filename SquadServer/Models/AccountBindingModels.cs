@@ -13,6 +13,12 @@ namespace SquadServer.Models
         public string ExternalAccessToken { get; set; }
     }
 
+    public class ChangeNameModel
+    {
+        [Required]
+        public string Name { get; set; }
+    }
+
     public class ChangePasswordBindingModel
     {
         [Required]
