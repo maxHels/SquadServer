@@ -3,12 +3,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using System.Collections.Generic;
+using System;
 
 namespace SquadServer.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        string FirstName { get; set; }
+        string SecondName { get; set; }
+        ICollection<int> EventsId { get; set; }
+        ICollection<Event> EventsParticipating { get; set; }
+        ICollection<string> Hobbies { get; set; }
+        DateTime BirthDay { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Обратите внимание, что authenticationType должен совпадать с типом, определенным в CookieAuthenticationOptions.AuthenticationType
